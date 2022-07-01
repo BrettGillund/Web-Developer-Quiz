@@ -73,6 +73,10 @@ var count = 75;
 var timerEl = document.getElementById('timer');
 var startButton = document.getElementById('start');
 var questionSection = document.getElementById('question') 
+var answerSection = document.getElementsByClassName('answer')
+var questionNum = document.getElementById('questionNum')
+
+
 
 startButton.addEventListener('click', function(){
 var timer = setInterval(function() {
@@ -100,9 +104,9 @@ var timer = setInterval(function() {
     
 startButton.addEventListener('click', function(){
 
-function question1() {
-    questionSection.innerText = `Question 1`
-    
-}
+    questionNum.innerText = `Question 1`;
+    questionSection.innerText = 'How often should you push your work to GitHub.com?';
+    answerSection.setAttribute = ('style', 'display: block;');
+    startButton.setAttribute = ('style', 'display: none;');
 
 })

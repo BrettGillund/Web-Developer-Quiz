@@ -58,22 +58,16 @@ button {
     color: red;
 }
 
-.question {
-    display: flex;
-
-    padding: 30px;
+.answer {
+    display: none;
     margin: 20px;
-    background-color: white;
-    border: 10px solid grey;
-    border-radius: 20px;
-    max-width: fit-content;
 }
 
-.question:hover {
+.answer:hover {
     color: black;
     text-decoration: underline;
     cursor: pointer;
 }
-.question:active {
+.answer:active {
     color: red;
 }
