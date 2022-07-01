@@ -68,21 +68,41 @@
 // }, 1000)
 
 
+
 var count = 75;
 var timerEl = document.getElementById('timer');
 var startButton = document.getElementById('start');
-
+var questionSection = document.getElementById('question') 
 
 startButton.addEventListener('click', function(){
 var timer = setInterval(function() {
     count--;
 
     console.log(count);
-
-    timerEl.innerText = `${count}`;
+    timerEl.innerText = count; // this is how we have our timer element change. 
     if (count === 0) {
-
+    clearInterval(timer); // this is how we stop the timer when the variable reaches a certain number.
     } ;
 }, 1000);})
 
+// //making starting menu disapear
 
+// while (count = true) {
+//     document.getElementsByClassName(main-menu).style.display = 'none';
+// }
+
+// // adding functions to change the text of each question.
+// function firstQuestion(){
+    
+// }
+
+// //quiz questions and answers
+    
+startButton.addEventListener('click', function(){
+
+function question1() {
+    questionSection.innerText = `Question 1`
+    
+}
+
+})

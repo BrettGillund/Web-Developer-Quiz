@@ -29,14 +29,17 @@ section {
     
 }
 
-h1, h3 {
+h1, h4 {
     padding: 30px;
     margin: 20px;
     background-color: white;
     border: 10px solid grey;
     border-radius: 20px;
     max-width: fit-content;
+}
 
+h3 {
+    justify-content: center;
 }
 
 button {
@@ -52,5 +55,25 @@ button {
     cursor: pointer;
 }
 .active:active {
+    color: red;
+}
+
+.question {
+    display: flex;
+
+    padding: 30px;
+    margin: 20px;
+    background-color: white;
+    border: 10px solid grey;
+    border-radius: 20px;
+    max-width: fit-content;
+}
+
+.question:hover {
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.question:active {
     color: red;
 }
