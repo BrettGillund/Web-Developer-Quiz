@@ -42,6 +42,13 @@ h3 {
     justify-content: center;
 }
 
+#startBtn {
+    font-size: x-large;
+    border: 10px solid grey;
+    border-radius: 20px;
+    padding: 20px;
+}
+
 button {
     font-size: x-large;
     border: 10px solid grey;
@@ -59,7 +66,7 @@ button {
 }
 
 .answer {
-    display: none;
+    /* display: none; */
     margin: 20px;
 }
 
@@ -71,3 +78,8 @@ button {
 .answer:active {
     color: red;
 }
+
+/* 
+.ding {
+    display: block;
+} */

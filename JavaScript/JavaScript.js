@@ -1,5 +1,5 @@
-// User can click to view high scores or start quiz.
-// User clicks view highscores and a score page pops up with a button to return to main menu.
+
+
 
 // User clicks start to start quiz:
 // timer starts on top right 75 seconds begin to count down.
@@ -8,6 +8,8 @@
 // on click the next question will pop up, and there will be an indicator at the bottom if the question was correct or incorrect.
 // when the timer finishes or all of the questions are answered the score appears, and a box asking for a name to be entered pops up.
 // on submit of the form the highscores pop up.
+// User can click to view high scores or start quiz.
+// User clicks view highscores and a score page pops up with a button to return to main menu.
 
 
 // User clicks start to start quiz:
@@ -16,78 +18,34 @@
 
 // Question above and four text boxes appear with potential answers to the questions. 
 
-// var startBtn = document.querySelector('#start');
-// var count = 75;
-
-
-
-// startBtn.addEventListener('click', startBtn); {
-// function startTimer() {
-//     var timer = setInterval(function() {
-//         count--;
-    
-//         console.log(count);
-    
-//         // how can we stop this when count reaches zero? answer: using an if statement.
-//         if (count === 0) {
-//         clearInterval(timer); // this is how we stop the timer when the variable reaches a certain number.
-//         } ;
-//     }, 1000);
-// }
-// }
-
-// count--;
-
-// console.log(count);
-
-// // how can we stop this when count reaches zero? answer: using an if statement.
-// if (count === 0) {
-// clearInterval(timer); // this is how we stop the timer when the variable reaches a certain number.
-// } ;
-// }, 1000)
-
-// function countdown() {
-// var count = 75;
-
-// var timeInterval = setInterval(function() {
-//     count--
-//     time
-// })
-
-
-
-// var count = 10;
-// var timerInterval;
-// var quizTimer = document.getElementById('timer');
-// var startButton = document.getElementById('start');
-
-// timerInterval = setInterval(function(){
-//     startButton.addEventListener('click', startButton);
-//     count--;
-//     quizTimer.textContents = count + 'seconds left';
-// }, 1000)
-
-
 
 var count = 75;
 var timerEl = document.getElementById('timer');
-var startButton = document.getElementById('start');
+var start = document.getElementById('start');
 var questionSection = document.getElementById('question') 
 var answerSection = document.getElementsByClassName('answer')
 var questionNum = document.getElementById('questionNum')
+var disapearStart = document.querySelector('.ding')
+var time = questions.length * 15;
+var timeStart;
+var questonIndex = 0;
+var optionsEl = document.getElementById('options');
 
 
+// start.addEventListener('click', function(){
+// var timer = setInterval(function() {
+//     count--;
 
-startButton.addEventListener('click', function(){
-var timer = setInterval(function() {
-    count--;
+//     console.log(count);
+//     timerEl.innerText = count; // this is how we have our timer element change. 
+//     if (count === 0) {
+//     clearInterval(timer); // this is how we stop the timer when the variable reaches a certain number.
+//     } ;
+// }, 1000);})
 
-    console.log(count);
-    timerEl.innerText = count; // this is how we have our timer element change. 
-    if (count === 0) {
-    clearInterval(timer); // this is how we stop the timer when the variable reaches a certain number.
-    } ;
-}, 1000);})
+// timer starts.
+// first question populates.
+// options populate.
 
 // //making starting menu disapear
 
@@ -102,11 +60,59 @@ var timer = setInterval(function() {
 
 // //quiz questions and answers
     
-startButton.addEventListener('click', function(){
+function startTheQuiz(){
+    // questionNum.innerText = `Question 1`;
+    // questionSection.innerText = 'How often should you push your work to GitHub.com?';
 
-    questionNum.innerText = `Question 1`;
-    questionSection.innerText = 'How often should you push your work to GitHub.com?';
-    answerSection.setAttribute = ('style', 'display: block;');
-    startButton.setAttribute = ('style', 'display: none;');
+    // // answerSection.setAttribute = ('style', 'display: block;');
+    // disapearStart.setAttribute = ('style', 'display: none;');
+    start.style.display = 'none';
+    timeStart = setInterval(timeClock, 1000);
+    questionSection.style.display ='block';
+    getQuestions();
+};
 
-})
+function timeClock(){
+time--;
+timerEl.textContent=time;
+if (time <= 0) {
+    endQuiz();
+}
+}
+
+function getQuestions() {
+    var currentQuestion = questions[questonIndex];
+    var titleEl = document.getElementById('title');
+    titleEl.textContent = currentQuestion.title;
+    optionsEl.textContent = ""; // this will clean the previous question.
+    currentQuestion.options.forEach(function(option,i) {
+        var optionButtons = document.createElement('button');
+        optionButtons.setAttribute("value", option);
+        optionButtons.textContent = i + 1 + option;
+        optionButtons.onclick = checkAnswer;
+        optionsEl.appendChild(optionButtons);
+    });
+}
+
+function checkAnswer(){
+    if (this.value !== questions[questonIndex].answer) {
+        time-= 5;
+        timerEl.textContent=time;
+        alert("wrong answer!");
+    } else {
+        alert('correct!')
+    }
+    questonIndex++;
+    console.log(questonIndex);
+    if (questonIndex === questions.length) {
+        endQuiz();
+    } else {
+        getQuestions();
+    }
+}
+
+function endQuiz() {
+    console.log('quiz end'); //hide questions. show score. add start button back in. 
+};
+
+start.addEventListener('click', startTheQuiz);
