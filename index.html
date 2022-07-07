@@ -11,7 +11,7 @@
     <header>
         <h1 class="active">View High Scores</h1>
         <!-- <h4 ID="questionNum">Press start to take a quiz on the concepts of Web Development!</h4> -->
-        <h1 ID="timer"></h1>
+        <h1 ID="timer">45</h1>
         
     </header>
 
@@ -21,17 +21,22 @@
             <h2>Press start to take a quiz on the concepts of Web Development!</h2>
             <button id="startBtn">START THE QUIZ</button>
         </div>
-        <div id="question" style="display: none">
+        <div id="question">
             <h2 id="title"></h2> 
             <div id="options"></div>
         </div>
         <!-- <button id="start" class="active ding">START</button> -->
-        <!-- <div>
-            <button class="answer" id="q1">Answer 1</button>
-            <button class="answer" id="q2">Answer 2</button>
-            <button class="answer" id="q3">Answer 3</button>
-            <button class="answer" id="q4">Answer 4</button>
-        </div> -->
+        <div id="endcard">
+            <h2 id="score"></h2>
+            <form id="name-entry">
+                <input type="text" id="entered-name">
+                <input type="submit">
+            </form>
+        </div>
+        <div id="scorepage">
+            <h2> High Score - Name,Score = <span id="high-score"></span></h2>
+            <button onClick="window.location.reload();">Play again?</button>
+        </div>
     </section>
 
 

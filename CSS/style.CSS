@@ -79,6 +79,18 @@ button {
     color: red;
 }
 
+#question {
+    display: none;
+}
+
+#endcard {
+    display: none;
+}
+
+#scorepage {
+    display: none;
+}
+
 /* 
 .ding {
     display: block;

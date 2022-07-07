@@ -19,17 +19,7 @@
 // Question above and four text boxes appear with potential answers to the questions. 
 
 
-var count = 75;
-var timerEl = document.getElementById('timer');
-var start = document.getElementById('start');
-var questionSection = document.getElementById('question') 
-var answerSection = document.getElementsByClassName('answer')
-var questionNum = document.getElementById('questionNum')
-var disapearStart = document.querySelector('.ding')
-var time = questions.length * 15;
-var timeStart;
-var questonIndex = 0;
-var optionsEl = document.getElementById('options');
+
 
 
 // start.addEventListener('click', function(){
@@ -55,29 +45,47 @@ var optionsEl = document.getElementById('options');
 
 // // adding functions to change the text of each question.
 // function firstQuestion(){
-    
+
 // }
+// questionNum.innerText = `Question 1`;
+// questionSection.innerText = 'How often should you push your work to GitHub.com?';
 
+// // answerSection.setAttribute = ('style', 'display: block;');
+// disapearStart.setAttribute = ('style', 'display: none;');
 // //quiz questions and answers
-    
-function startTheQuiz(){
-    // questionNum.innerText = `Question 1`;
-    // questionSection.innerText = 'How often should you push your work to GitHub.com?';
 
-    // // answerSection.setAttribute = ('style', 'display: block;');
-    // disapearStart.setAttribute = ('style', 'display: none;');
+
+var timerEl = document.getElementById('timer');
+var start = document.getElementById('start');
+var questionSection = document.getElementById('question')
+// var answerSection = document.getElementsByClassName('answer')
+// var questionNum = document.getElementById('questionNum')
+// var disapearStart = document.querySelector('.ding')
+var time = questions.length * 15;
+var timeStart;
+var questonIndex = 0;
+var optionsEl = document.getElementById('options');
+var endCard = document.getElementById('endcard')
+var submitForm = document.getElementById('name-entry');
+var nameEntered = document.getElementById('entered-name');
+var highScorePage = document.getElementById('scorepage');
+var lastScore = document.getElementById('high-score');
+// var returnMain = document.getElementById('return')
+
+function startTheQuiz() {
+
     start.style.display = 'none';
     timeStart = setInterval(timeClock, 1000);
-    questionSection.style.display ='block';
+    questionSection.style.display = 'block';
     getQuestions();
 };
 
-function timeClock(){
-time--;
-timerEl.textContent=time;
-if (time <= 0) {
-    endQuiz();
-}
+function timeClock() {
+    time--;
+    timerEl.textContent = time;
+    if (time <= 0) {
+        endQuiz();
+    }
 }
 
 function getQuestions() {
@@ -85,7 +93,7 @@ function getQuestions() {
     var titleEl = document.getElementById('title');
     titleEl.textContent = currentQuestion.title;
     optionsEl.textContent = ""; // this will clean the previous question.
-    currentQuestion.options.forEach(function(option,i) {
+    currentQuestion.options.forEach(function (option, i) {
         var optionButtons = document.createElement('button');
         optionButtons.setAttribute("value", option);
         optionButtons.textContent = i + 1 + option;
@@ -94,16 +102,16 @@ function getQuestions() {
     });
 }
 
-function checkAnswer(){
+function checkAnswer() {
     if (this.value !== questions[questonIndex].answer) {
-        time-= 5;
-        timerEl.textContent=time;
+        time -= 5;
+        timerEl.textContent = time;
         alert("wrong answer!");
     } else {
         alert('correct!')
     }
     questonIndex++;
-    console.log(questonIndex);
+    // console.log(questonIndex);
     if (questonIndex === questions.length) {
         endQuiz();
     } else {
@@ -112,7 +120,40 @@ function checkAnswer(){
 }
 
 function endQuiz() {
-    console.log('quiz end'); //hide questions. show score. add start button back in. 
+    // console.log('quiz end'); //hide questions. show score. add start button back in. 
+    clearInterval(timeStart); // timer stops when endQuiz() is called.
+    questionSection.style.display = 'none';
+    endCard.style.display= 'block';
 };
 
+//create a final page for top scores.
+
+function scorePage() {
+    endCard.style.display = 'none';
+    lastScore.innerText = localStorage.getItem(`highScore`);
+    highScorePage.style.display = 'block';
+    var time = questions.length * 15;
+};
+
+
+submitForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var leaderBoard = nameEntered.value;
+    var highScore = [leaderBoard, time];
+    localStorage.setItem('highScore', highScore);
+    scorePage();
+    
+});
+
 start.addEventListener('click', startTheQuiz);
+
+// returnMain.addEventListener('click', function restartTheQuiz() {
+//     highScorePage.style.display = 'none';
+//     time = questions.length * 15;
+//     startTheQuiz;
+// });
+
+
+// set questions and options.
+// local storage to collect name and score. add this into endQuiz.
+// create a score page with updating scores.
